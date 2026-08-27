@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="viewer"></div>
+  <div id="marquee-top">
+    <span>Veronica Arancibia Daes</span>
+    <span>Graphic design and Illustration</span>
+    <span></span>
+    <span></span>
+  </div>
+  <div id="marquee-bottom">
+    <a href="https://www.instagram.com/va.aad/" target="_blank" rel="noopener">Contact</a>
+    <a href="cv/CV vad.pdf" target="_blank" rel="noopener">cv</a>
+    <span></span>
+    <span></span>
+  </div>
+
+  <script>
+    const media = [
+      "data/IMG_0628.JPG",
+      "data/IMG_6458.png",
+      "data/IMG_8172.JPG",
+      "data/IMG_8173.JPG",
+      "data/IMG_9962.JPG",
+      "data/catalogue.png",
+      "data/catalogue2.png",
+      "data/poster.png",
+      "data/poster2.png",
+      "data/poster2.2.png",
+      "data/poster4.png",
+      "data/hershey.png",
+      "data/Untitled_Artwork.JPG",
+      "data/IMG_0162.JPG",
+      "data/IMG_0161.JPG",
+      "data/Untitled_Artwork.GIF",
+      "data/Untitled_Artwork 2.MP4",
+      "data/Pabellon-Ac-previa-corte-2-2023-012.jpg",
+      "data/Untitled_Artwork 3.MP4",
+      "data/2024-03-12-17-34-37-01.png",
+      "data/Anuario-2023-001.jpg",
+      "data/Anuario-2023-016.jpg",
+      "data/Anuario-2023-023.jpg",
+      "data/close-cover-1.png",
+      "data/close-cover-2.png",
+      "data/close-cover-3.png",
+      "data/HeatDeath_Scans.gif",
+      "data/HyperPrintScans.mp4",
+      "data/hershey_0000.mp4",
+      "data/VeronicaArancibiaDaes_SubImage7.png",
+      "data/pabellon1.png",
+      "data/VeronicaArancibiaDaes_SubImage6.png",
+      "data/pabellon2.png",
+      "data/VeronicaArancibiaDaes_SubImage4.png",
+      "data/VeronicaArancibiaDaes_SubImage7.mp4"
+    ];
+
+    const videoExtensions = ["mp4", "webm", "mov", "m4v"];
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    let order = shuffle([...media]);
+    let index = 0;
+    const viewer = document.getElementById('viewer');
+
+    function showMedia(i) {
+      const src = order[i];
+      const extension = src.split('.').pop().toLowerCase();
+      viewer.innerHTML = '';
+
+      let el;
+      if (videoExtensions.includes(extension)) {
+        el = document.createElement('video');
+        el.src = src;
+        el.autoplay = true;
+        el.loop = true;
+        el.muted = true;
+        el.playsInline = true;
+        el.controls = false;
+      } else {
+        el = document.createElement('img');
+        el.src = src;
+        el.alt = '';
+      }
+      el.id = 'media';
+      viewer.appendChild(el);
+    }
+
+    showMedia(index);
+
+    function next() {
+      index++;
+      if (index >= order.length) {
+        order = shuffle([...media]);
+        index = 0;
+      }
+      showMedia(index);
+    }
+
+    function previous() {
+      index--;
+      if (index < 0) {
+        index = order.length - 1;
+      }
+      showMedia(index);
+    }
+
+    viewer.addEventListener('click', (e) => {
+      const rect = viewer.getBoundingClientRect();
+      const isRightSide = e.clientX - rect.left > rect.width / 2;
+      if (isRightSide) {
+        next();
+      } else {
+        previous();
+      }
+    });
+
+    viewer.addEventListener('mousemove', (e) => {
+      const rect = viewer.getBoundingClientRect();
+      const isRightSide = e.clientX - rect.left > rect.width / 2;
+      viewer.style.cursor = isRightSide ? 'e-resize' : 'w-resize';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-RegularItalic-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-LightItalic-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Thin-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-ThinItalic-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Medium-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-MediumItalic-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Semibold-Trial.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-SemiboldItalic-Trial.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Bold-Trial.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-BoldItalic-Trial.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-Black-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ABC Marfa Semi Mono";
+  src: url("data/marfa-semi-mono/ABCMarfaSemi-Mono-BlackItalic-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  cursor: default;
+}
+
+#viewer {
+  display: flex;
+}
+
+#media {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#marquee-top,
+#marquee-bottom {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 24px;
+  pointer-events: none;
+}
+
+#marquee-top {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#marquee-bottom {
+  bottom: 24px;
+}
+
+#marquee-top span,
+#marquee-bottom span,
+#marquee-bottom a {
+  padding-left: 24px;
+  font-family: "ABC Marfa Semi Mono", monospace;
+  font-size: 11pt;
+  color: #000;
+  text-align: left;
+  font-weight: 300;
+}
+
+#marquee-bottom a {
+  pointer-events: auto;
+  text-decoration: none;
+  width: fit-content;
+}
+
+#marquee-bottom a:hover {
+  text-decoration: underline;
+}
