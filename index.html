@@ -24,17 +24,17 @@
   <script>
     const media = [
       "data/IMG_0628.JPG",
-      "data/IMG_6458.png",
+      "data/IMG_6458.webp",
       "data/IMG_8172.JPG",
       "data/IMG_8173.JPG",
       "data/IMG_9962.JPG",
-      "data/catalogue.png",
-      "data/catalogue2.png",
-      "data/poster.png",
-      "data/poster2.png",
-      "data/poster2.2.png",
-      "data/poster4.png",
-      "data/hershey.png",
+      "data/catalogue.webp",
+      "data/catalogue2.webp",
+      "data/poster.webp",
+      "data/poster2.webp",
+      "data/poster2.2.webp",
+      "data/poster4.webp",
+      "data/hershey.webp",
       "data/Untitled_Artwork.JPG",
       "data/IMG_0162.JPG",
       "data/IMG_0161.JPG",
@@ -42,21 +42,21 @@
       "data/Untitled_Artwork 2.MP4",
       "data/Pabellon-Ac-previa-corte-2-2023-012.jpg",
       "data/Untitled_Artwork 3.MP4",
-      "data/2024-03-12-17-34-37-01.png",
+      "data/2024-03-12-17-34-37-01.webp",
       "data/Anuario-2023-001.jpg",
       "data/Anuario-2023-016.jpg",
       "data/Anuario-2023-023.jpg",
-      "data/close-cover-1.png",
-      "data/close-cover-2.png",
-      "data/close-cover-3.png",
+      "data/close-cover-1.webp",
+      "data/close-cover-2.webp",
+      "data/close-cover-3.webp",
       "data/HeatDeath_Scans.gif",
       "data/HyperPrintScans.mp4",
       "data/hershey_0000.mp4",
-      "data/VeronicaArancibiaDaes_SubImage7.png",
-      "data/pabellon1.png",
-      "data/VeronicaArancibiaDaes_SubImage6.png",
+      "data/VeronicaArancibiaDaes_SubImage7.webp",
+      "data/pabellon1.webp",
+      "data/VeronicaArancibiaDaes_SubImage6.webp",
       "data/pabellon2.png",
-      "data/VeronicaArancibiaDaes_SubImage4.png",
+      "data/VeronicaArancibiaDaes_SubImage4.webp",
       "data/VeronicaArancibiaDaes_SubImage7.mp4"
     ];
 
@@ -73,6 +73,23 @@
     let order = shuffle([...media]);
     let index = 0;
     const viewer = document.getElementById('viewer');
+
+    function preload(src) {
+      const extension = src.split('.').pop().toLowerCase();
+      if (videoExtensions.includes(extension)) {
+        const v = document.createElement('video');
+        v.preload = 'auto';
+        v.src = src;
+      } else {
+        const img = new Image();
+        img.src = src;
+      }
+    }
+
+    function preloadNeighbors(i) {
+      preload(order[(i + 1) % order.length]);
+      preload(order[(i - 1 + order.length) % order.length]);
+    }
 
     function showMedia(i) {
       const src = order[i];
@@ -95,6 +112,7 @@
       }
       el.id = 'media';
       viewer.appendChild(el);
+      preloadNeighbors(i);
     }
 
     showMedia(index);
