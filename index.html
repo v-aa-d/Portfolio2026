@@ -55,7 +55,6 @@
       "data/VeronicaArancibiaDaes_SubImage7.webp",
       "data/pabellon1.webp",
       "data/VeronicaArancibiaDaes_SubImage6.webp",
-      "data/pabellon2.png",
       "data/VeronicaArancibiaDaes_SubImage4.webp",
       "data/VeronicaArancibiaDaes_SubImage7.mp4"
     ];
@@ -111,6 +110,10 @@
         el.alt = '';
       }
       el.id = 'media';
+      el.onerror = () => {
+        console.warn('Failed to load media, skipping:', src);
+        next();
+      };
       viewer.appendChild(el);
       preloadNeighbors(i);
     }
